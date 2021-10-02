@@ -5,7 +5,8 @@ async def parseCommand(message):
     commandMessage = message.content.split(" ")
     if (commandMessage[0] == "$help"):
         await help(message)
-#    if nextCommand
+    if (commandMessage[0] == "$preference"):
+        await preferences(message)
 
 async def help(message):
     helpMessage = "list of commands:/n"
@@ -15,6 +16,10 @@ async def help(message):
     helpMessage += "$make: makes a boba for you!"
     helpMessage += "$list: lists the choices."
     await message.channel.send(helpMessage)
+
+async def preferences(message):
+    preferenceArray = message.content.split(" ")
     
+
 
 
