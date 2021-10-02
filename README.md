@@ -1,2 +1,2 @@
 # boba-bot
-Discord bot that generates boba
+Team Poggies' submission for Sunhacks 2021
