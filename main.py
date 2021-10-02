@@ -1,5 +1,6 @@
 import discord
 import os
+import input
 
 client = discord.Client()
 
@@ -14,7 +15,9 @@ async def on_message(message):
         if message.author == client.user:
                     return
 
-                    if message.content.startswith('$hello'):
-                                await message.channel.send('Hello!')
+        if message.content.startswith('$hello'):
+                    await message.channel.send('Hello!')
+        await input.parseCommand(message) 
+        
 
 client.run('ODkzOTY0NTE3OTc1OTQ1MjU2.YVjHVg.OHTxuCtXYcIkWLupRMWRavs5pAU')
