@@ -9,10 +9,11 @@ async def on_ready():
 
         @client.event
         async def on_message(message):
+                print(message.content)
                 if message.author == client.user:
                             return
 
                             if message.content.startswith('$hello'):
                                         await message.channel.send('Hello!')
 
-client.run(os.environ['BOT_TOKEN'])
+client.run('ODkzOTY0NTE3OTc1OTQ1MjU2.YVjHVg.OHTxuCtXYcIkWLupRMWRavs5pAU')
