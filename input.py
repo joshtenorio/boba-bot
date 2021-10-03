@@ -4,11 +4,7 @@ import bs4
 import filemanager as fm
 from maker import makeBoba
 import optionmanager as om
-    
-try:
-    from googlesearch import search 
-except ImportError:
-    print("No module found!")
+from googlesearch import search 
 
 async def parseCommand(message):    # Takes input from user and selects with command to run
     commandMessage = message.content.split(" ")
@@ -24,8 +20,6 @@ async def parseCommand(message):    # Takes input from user and selects with com
         await list(message)
     if (commandMessage[0] == "$user"):
         await user(message)
-    if (commandMessage[0] == "$search"):
-        await searchFor(message)
 
 async def help(message):
     helpMessage = "**List of Commands:**\n"
@@ -34,6 +28,7 @@ async def help(message):
     helpMessage += "$allergy: change your allergies, each separated by a space.\n"
     helpMessage += "$make: makes a boba for you!\n"
     helpMessage += "$list: lists the choices.\n"
+    helpMessage += "$user: displays the users current Preferences and Allergies.\n"
     await message.channel.send(helpMessage)
 
 async def preferences(message):     # Change the preferences of the author
@@ -112,30 +107,30 @@ async def list(message):    # Lists the possible choices from the boba bot
         listPrompt += "\t2) flavor\n"
         listPrompt += "\t3) toppings\n"
         await message.channel.send(listPrompt)
-    
-    if(listArray[1].lower() == "tea" or listArray[1].lower() == "teas" or listArray[1] == "1"):
-        listPrompt = "For teas, you have the following options:\n\n"
-        for i in range(len(om.getTea()) - 1):
-            listPrompt += om.getTea()[i] + ", "
-        listPrompt += om.getTea()[len(om.getTea()) - 1]
+    else: 
+        if(listArray[1].lower() == "tea" or listArray[1].lower() == "teas" or listArray[1] == "1"):
+            listPrompt = "For teas, you have the following options:\n\n"
+            for i in range(len(om.getTea()) - 1):
+                listPrompt += om.getTea()[i] + ", "
+            listPrompt += om.getTea()[len(om.getTea()) - 1]
 
-        await message.channel.send(listPrompt)
-    
-    if(listArray[1].lower() == "flavor" or listArray[1].lower() == "flavors" or listArray[1] == "2"):
-        listPrompt = "For flavors, you have the following options:\n\n"
-        for i in range(len(om.getFlavors()) - 1):
-            listPrompt += om.getFlavors()[i] + ", "
-        listPrompt += om.getFlavors()[len(om.getFlavors()) - 1]
+            await message.channel.send(listPrompt)
         
-        await message.channel.send(listPrompt)
-    
-    if(listArray[1].lower() == "topping" or listArray[1].lower() == "toppings" or listArray[1] == "3"):
-        listPrompt = "For toppings, you have the following options:\n\n"
-        for i in range(len(om.getToppings()) - 1):
-            listPrompt += om.getToppings()[i] + ", "
-        listPrompt += om.getToppings()[len(om.getToppings()) - 1]
+        if(listArray[1].lower() == "flavor" or listArray[1].lower() == "flavors" or listArray[1] == "2"):
+            listPrompt = "For flavors, you have the following options:\n\n"
+            for i in range(len(om.getFlavors()) - 1):
+                listPrompt += om.getFlavors()[i] + ", "
+            listPrompt += om.getFlavors()[len(om.getFlavors()) - 1]
+            
+            await message.channel.send(listPrompt)
+        
+        if(listArray[1].lower() == "topping" or listArray[1].lower() == "toppings" or listArray[1] == "3"):
+            listPrompt = "For toppings, you have the following options:\n\n"
+            for i in range(len(om.getToppings()) - 1):
+                listPrompt += om.getToppings()[i] + ", "
+            listPrompt += om.getToppings()[len(om.getToppings()) - 1]
 
-        await message.channel.send(listPrompt)
+            await message.channel.send(listPrompt)
 
 async def user(message):    # Used to view the preferences and allergies of the current user
     userPrint = "Let's take a look at "
@@ -152,13 +147,3 @@ async def user(message):    # Used to view the preferences and allergies of the 
             userPrint += a
             userPrint += " "
     await message.channel.send(userPrint)
-
-async def searchFor(message):
-    searchForArray = message.content.split(" ")   # Take the input and parse it into an array
-    searchForArray.pop(0)     # Removes the "$search" part of the string
-    searchForInd = "https://maps.google.com/?q="
-    for i in searchForArray:
-        searchForInd += i
-    print(searchForInd)
-    for j in search(searchForInd, tld = "co.in", num = 1, stop = 1, pause = 2):
-        await message.channel.send(f"\n I found some boba nearby here: {j}")
