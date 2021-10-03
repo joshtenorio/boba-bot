@@ -1,7 +1,8 @@
 import discord
 import os
-
+import filemanager as fm
 async def parseCommand(message):
+    fm.getAuthor(message.author)
     commandMessage = message.content.split(" ")
     if (commandMessage[0] == "$help"):
         await help(message)
@@ -25,6 +26,7 @@ async def help(message):
 
 async def preferences(message):     # Change the preferences of the author
     preferenceArray = message.content.split(" ")    # Take the input and parse it into an array
+
 #   set the preferences to the message.author 
 
 async def allergy(message):     # Change the allergies of the author
@@ -48,19 +50,18 @@ async def list(message):
         listPrompt += "\t3) toppings\n"
         await message.channel.send(listPrompt)
     
-    if(listArray[1].lower == "tea" or listArray[1].lower == "teas" or listArray[1] == "1"):
-        listPrompt = "For **teas**, you have the following options:\n\n"
-        listPrompt += "Tea: Green\t\nBlack\t\nOolong"
+    if(listArray[1].lower() == "tea" or listArray[1].lower() == "teas" or listArray[1] == "1"):
+        listPrompt = "For teas, you have the following options:\n\n"
+        listPrompt += "**Tea**: Green, Black, Oolong"
         await message.channel.send(listPrompt)
     
     if(listArray[1].lower() == "flavor" or listArray[1].lower() == "flavors" or listArray[1] == "2"):
-        listPrompt = "For **flavors**, you have the following options:\n\n"
-        listPrompt += "Fruit Tea: Honey\nLychee\nLychee Rose\t\nMango\t\nMango Passion Fruit\t\nMango Peach\t\nPeach\t\nPeach Pomegranate\t\nRose\t\nStrawberry\t\nStrawberry Lychee\t\nStrawberry Mango\t\nStrawberry Peach\t\nStrawberry Pineapple\n"
-        listPrompt += "Milk Tea: Almond\t\nBanana\t\nChocolate\t\nCoconut\t\nCoffee\t\nEarl Grey\t\nHokkaido\t\nNagasaki Green Honey\t\nHoneydew\t\nJasmine\t\nLavender\t\nLavender Vanilla\t\nLychee Rose\t\nMango\t\nMatcha\t\nOkinawa\t\nPistachio\t\nRose\t\nRoyal\t\nTaro\t\nTaro Lavender\t\nThai\t\nTiger\t\nUrban\t\nVanilla\n"
+        listPrompt = "For flavors, you have the following options:\n\n"
+        listPrompt += "**Fruit Tea**: Honey, Lychee, Lychee Rose, Mango, Mango Passion Fruit, Mango Peach, Peach, Peach Pomegranate, Rose, Strawberry, Strawberry Lychee, Strawberry Mango, Strawberry Peach, Strawberry Pineapple\n"
+        listPrompt += "**Milk Tea**: Almond, Banana, Chocolate, Coconut, Coffee, Earl Grey, Hokkaido, Nagasaki Green Honey, Honeydew, Jasmine, Lavender, Lavender Vanilla, Lychee Rose, Mango, Matcha, Okinawa, Pistachio, Rose, Royal, Taro, Taro Lavender, Thai, Tiger, Urban, Vanilla\n"
         await message.channel.send(listPrompt)
     
     if(listArray[1].lower() == "topping" or listArray[1].lower() == "toppings" or listArray[1] == "3"):
-        listPrompt = "For **toppings**, you have the following options:\n\n"
-        listPrompt += "Toppings: Brown Sugar\t\nCrystal Boba\t\nCoffee Jelly\t\nCustard Pudding\t\nHoney Boba\t\nLychee Jelly\t\nLychee Popping Pearls\t\nMango Popping Pearls\t\nPomegranate Popping Pearls\t\nRainbow Jelly\t\nRainbow Popping Pearls\t\nStrawberry Popping Pearls\t\nTamarindo Straw"
-
-#   list out the drink options
+        listPrompt = "For toppings, you have the following options:\n\n"
+        listPrompt += "**Toppings**: Brown Sugar, Crystal Boba, Coffee Jelly, Custard Pudding, Honey Boba, Lychee Jelly, Lychee Popping Pearls, Mango Popping Pearls, Pomegranate Popping Pearls, Rainbow Jelly, Rainbow Popping Pearls, Strawberry Popping Pearls, Tamarindo Straw"
+        await message.channel.send(listPrompt)
