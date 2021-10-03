@@ -69,3 +69,4 @@ def getAllergies(tag):
         u = getAuthor(tag)
     return u["allergies"]
 
+setPreferences("jardjard", ["asdf"])

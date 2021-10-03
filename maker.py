@@ -6,3 +6,6 @@ def makeBoba(message):
     if u == -1:
         fm.addAuthor(message.author)
         u = fm.getAuthor(message.author)
+
+    pref = fm.getPreferences(message.author)
+    allergies = fm.getAllergies(message.author)
