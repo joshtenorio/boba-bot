@@ -9,6 +9,12 @@ def getAuthors():
 
 # parameter author is the discord tag
 def addAuthor(author):
+    # check if author already exists
+    u = getAuthor(author)
+    if u != -1:
+        print(author + " already exists in .json")
+        return
+
     authordict = {"author": author, "preferences": [], "allergies": [] }
     users = getAuthors()
     users.append(authordict)
@@ -43,9 +49,15 @@ def getAuthor(tag):
 
 def getPreferences(tag):
     u = getAuthor(tag)
+    if u == -1:
+        addAuthor(tag)
+        u = getAuthor(tag)
     return u["preferences"]
 
 def getAllergies(tag):
     u = getAuthor(tag)
+    if u == -1:
+        addAuthor(tag)
+        u = getAuthor(tag)
     return u["allergies"]
 
