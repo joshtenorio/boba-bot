@@ -1,6 +1,7 @@
 import discord
 import os
 import filemanager as fm
+import optionmanager as om
 
 async def parseCommand(message):    # Takes input from user and selects with command to run
     commandMessage = message.content.split(" ")
@@ -82,18 +83,25 @@ async def list(message):
     
     if(listArray[1].lower() == "tea" or listArray[1].lower() == "teas" or listArray[1] == "1"):
         listPrompt = "For teas, you have the following options:\n\n"
-        listPrompt += "**Tea**: Green, Black, Oolong"
+        for i in range(len(om.getTea()) - 1):
+            listPrompt += om.getTea()[i] + ", "
+        listPrompt += om.getTea()[len(om.getTea()) - 1]
+
         await message.channel.send(listPrompt)
     
     if(listArray[1].lower() == "flavor" or listArray[1].lower() == "flavors" or listArray[1] == "2"):
         listPrompt = "For flavors, you have the following options:\n\n"
-        listPrompt += "**Fruit Tea**: Honey, Lychee, Lychee Rose, Mango, Mango Passion Fruit, Mango Peach, Peach, Peach Pomegranate, Rose, Strawberry, Strawberry Lychee, Strawberry Mango, Strawberry Peach, Strawberry Pineapple\n"
-        listPrompt += "**Milk Tea**: Almond, Banana, Chocolate, Coconut, Coffee, Earl Grey, Hokkaido, Nagasaki Green Honey, Honeydew, Jasmine, Lavender, Lavender Vanilla, Lychee Rose, Mango, Matcha, Okinawa, Pistachio, Rose, Royal, Taro, Taro Lavender, Thai, Tiger, Urban, Vanilla\n"
+        for i in range(len(om.getFlavors()) - 1):
+            listPrompt += om.getFlavors()[i] + ", "
+        listPrompt += om.getFlavors()[len(om.getFlavors()) - 1]
+        
         await message.channel.send(listPrompt)
     
     if(listArray[1].lower() == "topping" or listArray[1].lower() == "toppings" or listArray[1] == "3"):
-        listPrompt = "For toppings, you have the following options:\n\n"
-        listPrompt += "**Toppings**: Brown Sugar, Crystal Boba, Coffee Jelly, Custard Pudding, Honey Boba, Lychee Jelly, Lychee Popping Pearls, Mango Popping Pearls, Pomegranate Popping Pearls, Rainbow Jelly, Rainbow Popping Pearls, Strawberry Popping Pearls, Tamarindo Straw"
+        for i in range(len(om.getToppings()) - 1):
+            listPrompt += om.getToppings()[i] + ", "
+        listPrompt += om.getToppings()[len(om.getToppings()) - 1]
+
         await message.channel.send(listPrompt)
 
 async def user(message):
