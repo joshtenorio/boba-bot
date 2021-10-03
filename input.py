@@ -2,11 +2,8 @@ import discord
 import os
 import bs4
 import filemanager as fm
+from maker import makeBoba
 import optionmanager as om
-try:
-     from googlesearch import search 
-except ImportError:
-     print("No module found!")
      
 async def parseCommand(message):    # Takes input from user and selects with command to run
     commandMessage = message.content.split(" ")
@@ -70,12 +67,36 @@ async def allergy(message):     # Change the allergies of the author
             newAllergy += " "
         await message.channel.send(newAllergy)
 
-async def make(message):    
-    pass
-#   get the preferences of the message.author
-#   get the allergies of the message.author
-#   calculate the best drink to get (we should add a slight random factor
-#   so you don't get the same drink every time)
+async def make(message):
+    choice = makeBoba(message)
+    tea = om.getTea()
+    flavor = om.getFlavors()
+    toppings = om.getToppings()
+    paths = ["", "", ""]
+    name = message.author.name
+    output = name + ", your boba order is:\n"
+    for c in choice:
+        output += c + "\n"
+    await message.channel.send(output)
+    print(len(choice))
+    for t in tea:
+        for c in choice:
+            if c == t:
+                paths[0] = fm.getPathPicture(c)
+
+    for f in flavor:
+        for c in choice:
+            if c == f:
+                paths[1] = fm.getPathPicture(c)
+
+    for t in toppings:
+        for c in choice:
+            if c == t:
+                paths[2] = fm.getPathPicture(c)
+
+    print(paths)
+    for p in paths:
+        await message.channel.send(file=discord.File(p))
 
 async def list(message):    # Lists the possible choices from the boba bot
     listArray = message.content.split(" ")

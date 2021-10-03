@@ -17,7 +17,7 @@ def addAuthor(author):
         print(author + " already exists in .json")
         return
 
-    authordict = {"author": author, "preferences": [], "allergies": [] }
+    authordict = {"author": author, "preferences": [], "allergies": ["none"] }
     users = getAuthors()
     users.append(authordict)
     dictionary = {"authors": users}
@@ -77,6 +77,6 @@ setPreferences("jardjard", ["asdf"])
 def getPathPicture(input):
     photoDir = "photos/"
     extension = ".png"
-    input.lower().replace()
+    input.lower().replace(" ", "")
     print(photoDir + input + extension)
     return photoDir + input + extension
