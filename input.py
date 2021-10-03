@@ -20,15 +20,16 @@ async def parseCommand(message):
 async def help(message):
     helpMessage = "**List of Commands:**\n"
     helpMessage += "$help: lists the commands.\n"
-    helpMessage += "$preference: change your preferences for tea, each sepperated by a space.\n"
-    helpMessage += "$allergy: change your allergies, each sepperated by a space.\n"
+    helpMessage += "$preference: change your preferences for tea, each seperated by a space.\n"
+    helpMessage += "$allergy: change your allergies, each seperated by a space.\n"
     helpMessage += "$make: makes a boba for you!\n"
     helpMessage += "$list: lists the choices.\n"
     await message.channel.send(helpMessage)
 
 async def preferences(message):     # Change the preferences of the author
     preferenceArray = message.content.split(" ")    # Take the input and parse it into an array
-    fm.setPreferences(message.author, preferenceArray)
+    preferenceArray.pop(0)
+    fm.setPreferences((message.author.name + "#" + str(message.author.id)), preferenceArray)
 
 
 async def allergy(message):     # Change the allergies of the author
