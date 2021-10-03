@@ -7,11 +7,24 @@ def getAuthors():
         userList = data['authors']
     return userList
 
+# parameter author is the discord tag
 def addAuthor(author):
-    pass
+    authordict = {"author": author, "preferences": [], "allergies": [] }
+    users = getAuthors()
+    users.append(authordict)
+    dictionary = {"authors": users}
+    with open('authors.json', 'w') as file:
+        json.dump(dictionary, file)
+
 
 def setPreferences(author, preferences):
-    pass
+    users = getAuthors()
+    for u in users:
+        if u['author'] == author:
+            u["preferences"] = preferences
+    dictionary = {"authors": users}
+    with open('authors.json', "w") as file:
+        json.dump(dictionary, file)
 
 def setAllergies(author, allergies):
     users = getAuthors()
@@ -27,6 +40,7 @@ def getAuthor(tag):
     for u in users:
         if u['author'] == tag:
             return u
+    return -1
 
 def getPreferences(tag):
     u = getAuthor(tag)
@@ -36,5 +50,3 @@ def getAllergies(tag):
     u = getAuthor(tag)
     return u["allergies"]
 
-setAllergies("tenmo#6399", ["boop"])
-print(getAllergies("tenmo#6399"))
