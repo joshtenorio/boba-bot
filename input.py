@@ -14,6 +14,8 @@ async def parseCommand(message):
         await make(message)
     if (commandMessage[0] == "$list"):
         await list(message)
+    if (commandMessage[0] == "$json"):
+        await listJson(message)
 
 async def help(message):
     helpMessage = "**List of Commands:**\n"
@@ -26,12 +28,12 @@ async def help(message):
 
 async def preferences(message):     # Change the preferences of the author
     preferenceArray = message.content.split(" ")    # Take the input and parse it into an array
+    fm.setPreferences(message.author, preferenceArray)
 
-#   set the preferences to the message.author 
 
 async def allergy(message):     # Change the allergies of the author
     allergyArray = message.content.split(" ")   # Take the input and parse it into an array
-#   set the allergies to the message.author
+    fm.setAllergies(message.author, allergyArray)
 
 async def make(message):    
     pass
@@ -65,3 +67,6 @@ async def list(message):
         listPrompt = "For toppings, you have the following options:\n\n"
         listPrompt += "**Toppings**: Brown Sugar, Crystal Boba, Coffee Jelly, Custard Pudding, Honey Boba, Lychee Jelly, Lychee Popping Pearls, Mango Popping Pearls, Pomegranate Popping Pearls, Rainbow Jelly, Rainbow Popping Pearls, Strawberry Popping Pearls, Tamarindo Straw"
         await message.channel.send(listPrompt)
+
+    async def listJson(message):
+        pass 
