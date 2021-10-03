@@ -41,7 +41,7 @@ async def allergy(message):     # Change the allergies of the author
     newAllergy = "Changed the preferences for "
     newAllergy += message.author
     newAllergy += "to:\n\t"
-    newAllergy += preferenceArray
+    newAllergy += allergyArray
     await message.channel.send(newPreferences)
 
 async def make(message):    
@@ -59,7 +59,6 @@ async def list(message):
         listPrompt += "\t1) tea\n"
         listPrompt += "\t2) flavor\n"
         listPrompt += "\t3) toppings\n"
-        listPrompt += message.author
         await message.channel.send(listPrompt)
     
     if(listArray[1].lower() == "tea" or listArray[1].lower() == "teas" or listArray[1] == "1"):
