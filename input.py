@@ -28,21 +28,28 @@ async def help(message):
 
 async def preferences(message):     # Change the preferences of the author
     preferenceArray = message.content.split(" ")    # Take the input and parse it into an array
-    fm.setPreferences(message.author, preferenceArray)
-    newPreferences = "Changed the preferences for "
-    newPreferences += message.author
-    newPreferences += "to:\n\t"
-    newPreferences += preferenceArray
-    await message.channel.send(newPreferences)
+    preferenceArray.pop(0)
+    fm.setPreferences((message.author.name + "#" + str(message.author.id)), preferenceArray)
+    newPreference = "Changed the preferences for **"
+    newPreference += message.author.name
+    newPreference += "** to:\n\t"
+    for p in preferenceArray:
+        newPreference += p
+        newPreference += " "
+    await message.channel.send(newPreference)
 
+#sfdasddsasadfsadf
 async def allergy(message):     # Change the allergies of the author
     allergyArray = message.content.split(" ")   # Take the input and parse it into an array
-    fm.setAllergies(message.author, allergyArray)
-    newAllergy = "Changed the preferences for "
-    newAllergy += message.author
-    newAllergy += "to:\n\t"
-    newAllergy += allergyArray
-    await message.channel.send(newPreferences)
+    allergyArray.pop(0)
+    fm.setAllergies((message.author.name + "#" + str(message.author.id)), allergyArray)
+    newAllergy = "Changed the allergy for **"
+    newAllergy += message.author.name
+    newAllergy += "** to:\n\t"
+    for a in allergyArray:
+        newAllergy += a
+        newAllergy += " "
+    await message.channel.send(newAllergy)
 
 async def make(message):    
     pass
