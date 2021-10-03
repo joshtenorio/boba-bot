@@ -88,7 +88,7 @@ async def make(message):
 
     print(paths)
     for p in paths:
-        await message.chanel.send(file=discord.File(p))
+        await message.channel.send(file=discord.File(p))
 
 async def list(message):    # Lists the possible choices from the boba bot
     listArray = message.content.split(" ")

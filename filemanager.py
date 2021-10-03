@@ -77,6 +77,6 @@ setPreferences("jardjard", ["asdf"])
 def getPathPicture(input):
     photoDir = "photos/"
     extension = ".png"
-    input.lower().replace()
+    input.lower().replace(" ", "")
     print(photoDir + input + extension)
     return photoDir + input + extension
