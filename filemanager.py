@@ -23,6 +23,10 @@ def addAuthor(author):
         json.dump(dictionary, file)
 
 def setPreferences(author, preferences):
+    user = getAuthor(author)
+    if user == -1:
+        addAuthor(author)
+
     users = getAuthors()
     for u in users:
         if u['author'] == author:
@@ -32,6 +36,10 @@ def setPreferences(author, preferences):
         json.dump(dictionary, file)
 
 def setAllergies(author, allergies):
+    user = getAuthor(author)
+    if user == -1:
+        addAuthor(author)
+
     users = getAuthors()
     for u in users:
         if u['author'] == author:
