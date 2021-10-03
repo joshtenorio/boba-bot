@@ -70,3 +70,11 @@ def getAllergies(tag):
     return u["allergies"]
 
 setPreferences("jardjard", ["asdf"])
+
+# given a string, gets the relevant path to picture
+def getPathPicture(input):
+    photoDir = "photos/"
+    extension = ".png"
+    input.lower().replace()
+    print(photoDir + input + extension)
+    return photoDir + input + extension
