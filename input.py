@@ -20,8 +20,8 @@ async def parseCommand(message):    # Takes input from user and selects with com
 async def help(message):
     helpMessage = "**List of Commands:**\n"
     helpMessage += "$help: lists the commands.\n"
-    helpMessage += "$preference: change your preferences for tea, each seperated by a space.\n"
-    helpMessage += "$allergy: change your allergies, each seperated by a space.\n"
+    helpMessage += "$preference: change your preferences for tea, each separated by a space.\n"
+    helpMessage += "$allergy: change your allergies, each separated by a space.\n"
     helpMessage += "$make: makes a boba for you!\n"
     helpMessage += "$list: lists the choices.\n"
     await message.channel.send(helpMessage)
@@ -38,7 +38,6 @@ async def preferences(message):     # Change the preferences of the author
         newPreference += " "
     await message.channel.send(newPreference)
 
-#sfdasddsasadfsadf
 async def allergy(message):     # Change the allergies of the author
     allergyArray = message.content.split(" ")   # Take the input and parse it into an array
     allergyArray.pop(0)
