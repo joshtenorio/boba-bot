@@ -113,7 +113,8 @@ def makeBoba(message):
             pref_temp.append(i)
         choice[1] = pref_temp[randint(0, len(pref_temp) - 1)]
         pref_temp = []
-        for j in options['topping']:
+
+        for i in options['topping']:
             pref_temp.append(i)
         choice[2] = pref_temp[randint(0, len(pref_temp) - 1)]
         pref_temp = []
