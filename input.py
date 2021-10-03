@@ -2,6 +2,8 @@ import discord
 import os
 import filemanager as fm
 from maker import makeBoba
+import optionmanager as om
+
 
 async def parseCommand(message):    # Takes input from user and selects with command to run
     commandMessage = message.content.split(" ")
@@ -29,12 +31,14 @@ async def help(message):
 
 async def preferences(message):     # Change the preferences of the author
     preferenceArray = message.content.split(" ")    # Take the input and parse it into an array
-    preferenceArray.pop(0)
-    fm.setPreferences((message.author.name + "#" + str(message.author.id)), preferenceArray)
+    preferenceArray.pop(0)      # Removes the "$preference" part of the string
+    for p in range(len(preferenceArray)):   # Changes the input to be all lowercase
+        preferenceArray[p] = preferenceArray[p].lower()
+    fm.setPreferences((message.author.name + "#" + str(message.author.id)), preferenceArray)    # Changes the preferences in teh json file
     if(len(preferenceArray) == 0):    # If the input is only $allergy
         preferencePrompt = "You can specify what your preferences are using **$preference <preference1> <preference 2>**\n"
         await message.channel.send(preferencePrompt)
-    else:
+    else:   # If any preferences were listed
         newPreference = "Changed the preferences for **"
         newPreference += message.author.name
         newPreference += "** to:\n\t"
@@ -45,8 +49,10 @@ async def preferences(message):     # Change the preferences of the author
 
 async def allergy(message):     # Change the allergies of the author
     allergyArray = message.content.split(" ")   # Take the input and parse it into an array
-    allergyArray.pop(0)
-    fm.setAllergies((message.author.name + "#" + str(message.author.id)), allergyArray)
+    allergyArray.pop(0)     # Removes the "$allergy" part of the string
+    for a in range(len(allergyArray)):      # Changes the input to be all lowercase
+           allergyArray[a] = allergyArray[a].lower()
+    fm.setAllergies((message.author.name + "#" + str(message.author.id)), allergyArray)     # Changes the allergies in teh json file
     if(len(allergyArray) == 0):    # If the input is only $allergy
         allergyPrompt = "You can specify what your allergies are using **$allergy <allergy1> <allergy2>**\n"
         await message.channel.send(allergyPrompt)
@@ -66,7 +72,7 @@ async def make(message):
 #   so you don't get the same drink every time)
     choice = makeBoba(message)
 
-async def list(message):
+async def list(message):    # Lists the possible choices from the boba bot
     listArray = message.content.split(" ")
     if(len(listArray) == 1):    # If the input is only $list
         listPrompt = "You can specify what your looking for using **$list <category>**\n"
@@ -78,21 +84,29 @@ async def list(message):
     
     if(listArray[1].lower() == "tea" or listArray[1].lower() == "teas" or listArray[1] == "1"):
         listPrompt = "For teas, you have the following options:\n\n"
-        listPrompt += "**Tea**: Green, Black, Oolong"
+        for i in range(len(om.getTea()) - 1):
+            listPrompt += om.getTea()[i] + ", "
+        listPrompt += om.getTea()[len(om.getTea()) - 1]
+
         await message.channel.send(listPrompt)
     
     if(listArray[1].lower() == "flavor" or listArray[1].lower() == "flavors" or listArray[1] == "2"):
         listPrompt = "For flavors, you have the following options:\n\n"
-        listPrompt += "**Fruit Tea**: Honey, Lychee, Lychee Rose, Mango, Mango Passion Fruit, Mango Peach, Peach, Peach Pomegranate, Rose, Strawberry, Strawberry Lychee, Strawberry Mango, Strawberry Peach, Strawberry Pineapple\n"
-        listPrompt += "**Milk Tea**: Almond, Banana, Chocolate, Coconut, Coffee, Earl Grey, Hokkaido, Nagasaki Green Honey, Honeydew, Jasmine, Lavender, Lavender Vanilla, Lychee Rose, Mango, Matcha, Okinawa, Pistachio, Rose, Royal, Taro, Taro Lavender, Thai, Tiger, Urban, Vanilla\n"
+        for i in range(len(om.getFlavors()) - 1):
+            listPrompt += om.getFlavors()[i] + ", "
+        listPrompt += om.getFlavors()[len(om.getFlavors()) - 1]
+        
         await message.channel.send(listPrompt)
     
     if(listArray[1].lower() == "topping" or listArray[1].lower() == "toppings" or listArray[1] == "3"):
         listPrompt = "For toppings, you have the following options:\n\n"
-        listPrompt += "**Toppings**: Brown Sugar, Crystal Boba, Coffee Jelly, Custard Pudding, Honey Boba, Lychee Jelly, Lychee Popping Pearls, Mango Popping Pearls, Pomegranate Popping Pearls, Rainbow Jelly, Rainbow Popping Pearls, Strawberry Popping Pearls, Tamarindo Straw"
+        for i in range(len(om.getToppings()) - 1):
+            listPrompt += om.getToppings()[i] + ", "
+        listPrompt += om.getToppings()[len(om.getToppings()) - 1]
+
         await message.channel.send(listPrompt)
 
-async def user(message):
+async def user(message):    # Used to view the preferences and allergies of the current user
     userPrint = "Let's take a look at "
     userPrint += message.author.name
     userPrint += "'s personal information:\n\t"

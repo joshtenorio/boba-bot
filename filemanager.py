@@ -1,5 +1,7 @@
 import json
 
+# NOTE:
+# when referencing authors, use message.author.name + "#" + str(message.author.id)
 # get a list of authors and their preferences
 def getAuthors():
     with open('authors.json') as file:
@@ -70,3 +72,11 @@ def getAllergies(tag):
     return u["allergies"]
 
 setPreferences("jardjard", ["asdf"])
+
+# given a string, gets the relevant path to picture
+def getPathPicture(input):
+    photoDir = "photos/"
+    extension = ".png"
+    input.lower().replace()
+    print(photoDir + input + extension)
+    return photoDir + input + extension
