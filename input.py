@@ -71,16 +71,22 @@ async def make(message):
     flavor = om.getFlavors()
     toppings = om.getToppings()
     paths = ["", "", ""]
+    name = message.author.name
+    output = name + ", your boba order is:\n"
+    for c in choice:
+        output += c + "\n"
+    await message.channel.send(output)
     print(len(choice))
     for t in tea:
         for c in choice:
             if c == t:
                 paths[0] = fm.getPathPicture(c)
 
-    for t in flavor:
+    for f in flavor:
         for c in choice:
-            if c == t:
+            if c == f:
                 paths[1] = fm.getPathPicture(c)
+
     for t in toppings:
         for c in choice:
             if c == t:
