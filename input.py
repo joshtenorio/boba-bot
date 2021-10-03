@@ -29,29 +29,28 @@ async def help(message):
 
 async def preferences(message):     # Change the preferences of the author
     preferenceArray = message.content.split(" ")    # Take the input and parse it into an array
-    preferenceArray.pop(0)
-    for p in range(len(preferenceArray)):
-        preferenceArray[p].lower()
-    fm.setPreferences((message.author.name + "#" + str(message.author.id)), preferenceArray)
+    preferenceArray.pop(0)      # Removes the "$preference" part of the string
+    for p in range(len(preferenceArray)):   # Changes the input to be all lowercase
+        preferenceArray[p] = preferenceArray[p].lower()
+    fm.setPreferences((message.author.name + "#" + str(message.author.id)), preferenceArray)    # Changes the preferences in teh json file
     if(len(preferenceArray) == 0):    # If the input is only $allergy
         preferencePrompt = "You can specify what your preferences are using **$preference <preference1> <preference 2>**\n"
         await message.channel.send(preferencePrompt)
-    else:
+    else:   # If any preferences were listed
         newPreference = "Changed the preferences for **"
         newPreference += message.author.name
         newPreference += "** to:\n\t"
         for p in preferenceArray:
-            print(p)
             newPreference += p
             newPreference += " "
         await message.channel.send(newPreference)
 
 async def allergy(message):     # Change the allergies of the author
     allergyArray = message.content.split(" ")   # Take the input and parse it into an array
-    allergyArray.pop(0)
-    for a in range(len(allergyArray)):
-           allergyArray[a].lower()
-    fm.setAllergies((message.author.name + "#" + str(message.author.id)), allergyArray)
+    allergyArray.pop(0)     # Removes the "$allergy" part of the string
+    for a in range(len(allergyArray)):      # Changes the input to be all lowercase
+           allergyArray[a] = allergyArray[a].lower()
+    fm.setAllergies((message.author.name + "#" + str(message.author.id)), allergyArray)     # Changes the allergies in teh json file
     if(len(allergyArray) == 0):    # If the input is only $allergy
         allergyPrompt = "You can specify what your allergies are using **$allergy <allergy1> <allergy2>**\n"
         await message.channel.send(allergyPrompt)
@@ -71,7 +70,7 @@ async def make(message):
 #   calculate the best drink to get (we should add a slight random factor
 #   so you don't get the same drink every time)
 
-async def list(message):
+async def list(message):    # Lists the possible choices from the boba bot
     listArray = message.content.split(" ")
     if(len(listArray) == 1):    # If the input is only $list
         listPrompt = "You can specify what your looking for using **$list <category>**\n"
@@ -98,13 +97,14 @@ async def list(message):
         await message.channel.send(listPrompt)
     
     if(listArray[1].lower() == "topping" or listArray[1].lower() == "toppings" or listArray[1] == "3"):
+        listPrompt = "For toppings, you have the following options:\n\n"
         for i in range(len(om.getToppings()) - 1):
             listPrompt += om.getToppings()[i] + ", "
         listPrompt += om.getToppings()[len(om.getToppings()) - 1]
 
         await message.channel.send(listPrompt)
 
-async def user(message):
+async def user(message):    # Used to view the preferences and allergies of the current user
     userPrint = "Let's take a look at "
     userPrint += message.author.name
     userPrint += "'s personal information:\n\t"
