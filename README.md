@@ -1,5 +1,5 @@
 # boba-bot
-Team Poggies' submission for Sunhacks 2021
+Team Poggies' submission for Sunhacks 2021. Find our project page on Devpost [here](https://devpost.com/software/boba-bot).
 
 ## Build Instructions
 1. Create a `auth.py` with a variable `botToken` that contains the bot token for your bot

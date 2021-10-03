@@ -17,7 +17,7 @@ def addAuthor(author):
         print(author + " already exists in .json")
         return
 
-    authordict = {"author": author, "preferences": [], "allergies": [] }
+    authordict = {"author": author, "preferences": [], "allergies": ["none"] }
     users = getAuthors()
     users.append(authordict)
     dictionary = {"authors": users}
