@@ -20,8 +20,8 @@ async def parseCommand(message):
 async def help(message):
     helpMessage = "**List of Commands:**\n"
     helpMessage += "$help: lists the commands.\n"
-    helpMessage += "$preference: change your preferences for tea, each seperated by a space.\n"
-    helpMessage += "$allergy: change your allergies, each seperated by a space.\n"
+    helpMessage += "$preference: change your preferences for tea, each separated by a space.\n"
+    helpMessage += "$allergy: change your allergies, each separated by a space.\n"
     helpMessage += "$make: makes a boba for you!\n"
     helpMessage += "$list: lists the choices.\n"
     await message.channel.send(helpMessage)
