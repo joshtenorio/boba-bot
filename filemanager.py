@@ -1,5 +1,7 @@
 import json
 
+# NOTE:
+# when referencing authors, use message.author.name + "#" + str(message.author.id)
 # get a list of authors and their preferences
 def getAuthors():
     with open('authors.json') as file:
