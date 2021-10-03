@@ -3,7 +3,6 @@ import os
 import filemanager as fm
 
 async def parseCommand(message):    # Takes input from user and selects with command to run
-    fm.getAuthors()
     commandMessage = message.content.split(" ")
     if (commandMessage[0] == "$help"):
         await help(message)
@@ -39,6 +38,11 @@ async def preferences(message):     # Change the preferences of the author
 async def allergy(message):     # Change the allergies of the author
     allergyArray = message.content.split(" ")   # Take the input and parse it into an array
     fm.setAllergies(message.author, allergyArray)
+    newAllergy = "Changed the preferences for "
+    newAllergy += message.author
+    newAllergy += "to:\n\t"
+    newAllergy += preferenceArray
+    await message.channel.send(newPreferences)
 
 async def make(message):    
     pass
@@ -55,6 +59,7 @@ async def list(message):
         listPrompt += "\t1) tea\n"
         listPrompt += "\t2) flavor\n"
         listPrompt += "\t3) toppings\n"
+        listPrompt += message.author
         await message.channel.send(listPrompt)
     
     if(listArray[1].lower() == "tea" or listArray[1].lower() == "teas" or listArray[1] == "1"):
