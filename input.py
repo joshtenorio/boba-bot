@@ -1,8 +1,9 @@
 import discord
 import os
 import filemanager as fm
-async def parseCommand(message):
-    fm.getAuthor(message.author)
+
+async def parseCommand(message):    # Takes input from user and selects with command to run
+    fm.getAuthors()
     commandMessage = message.content.split(" ")
     if (commandMessage[0] == "$help"):
         await help(message)
@@ -29,7 +30,11 @@ async def help(message):
 async def preferences(message):     # Change the preferences of the author
     preferenceArray = message.content.split(" ")    # Take the input and parse it into an array
     fm.setPreferences(message.author, preferenceArray)
-
+    newPreferences = "Changed the preferences for "
+    newPreferences += message.author
+    newPreferences += "to:\n\t"
+    newPreferences += preferenceArray
+    await message.channel.send(newPreferences)
 
 async def allergy(message):     # Change the allergies of the author
     allergyArray = message.content.split(" ")   # Take the input and parse it into an array
@@ -69,4 +74,5 @@ async def list(message):
         await message.channel.send(listPrompt)
 
     async def listJson(message):
-        pass 
+        output = "Authors: "
+        output += fm.getAuthor(getAuthors())
