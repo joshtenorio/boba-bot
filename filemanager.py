@@ -16,7 +16,6 @@ def addAuthor(author):
     with open('authors.json', 'w') as file:
         json.dump(dictionary, file)
 
-
 def setPreferences(author, preferences):
     users = getAuthors()
     for u in users:
