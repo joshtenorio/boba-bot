@@ -1,5 +1,16 @@
 # boba-bot
+![logo](Images/mrboba.jpg)
+
 Team Poggies' submission for Sunhacks 2021. Find our project page on Devpost [here](https://devpost.com/software/boba-bot).
+## Commands
+```
+$help: lists the commands.
+$preference: change your preferences for tea, each separated by a space.
+$allergy: change your allergies, each separated by a space.
+$make: makes a boba for you!
+$list: lists the choices.
+$user: displays the users current Preferences and Allergies.
+```
 
 ## Build Instructions
 1. Create a `auth.py` with a variable `botToken` that contains the bot token for your bot
