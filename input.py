@@ -1,8 +1,13 @@
 import discord
 import os
+import bs4
 import filemanager as fm
 import optionmanager as om
-
+try:
+     from googlesearch import search 
+except ImportError:
+     print("No module found!")
+     
 async def parseCommand(message):    # Takes input from user and selects with command to run
     commandMessage = message.content.split(" ")
     if (commandMessage[0] == "$help"):
@@ -17,6 +22,8 @@ async def parseCommand(message):    # Takes input from user and selects with com
         await list(message)
     if (commandMessage[0] == "$user"):
         await user(message)
+    if (commandMessage[0] == "$search"):
+        await search(message)
 
 async def help(message):
     helpMessage = "**List of Commands:**\n"
@@ -119,3 +126,12 @@ async def user(message):    # Used to view the preferences and allergies of the 
             userPrint += a
             userPrint += " "
     await message.channel.send(userPrint)
+
+async def search(message):
+    searchForArray = message.content.split(" ")   # Take the input and parse it into an array
+    searchForArray.pop(0)     # Removes the "$allergy" part of the string
+    searchFor = ""
+    for i in searchForArray:
+        searchFor += i
+    for j in search(searchFor, tld = "co.in", num = 4, stop = 4, pause = 2):
+        await message.channel.send(f"\n:point_right: {j}") 
