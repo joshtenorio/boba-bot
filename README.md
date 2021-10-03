@@ -1,7 +1,8 @@
 # boba-bot
 ![logo](Images/mrboba.jpg)
 
-Team Poggies' submission for Sunhacks 2021. Find our project page on Devpost [here](https://devpost.com/software/boba-bot).
+Team Poggies' submission for Sunhacks 2021.
+Find our project page on [Devpost](https://devpost.com/software/boba-bot), and a video demonstration can be found on [YouTube](https://www.youtube.com/watch?v=YGLsBpBqap0&ab_channel=tenmo).
 ## Commands
 ```
 $help: lists the commands.
@@ -13,7 +14,7 @@ $user: displays the users current Preferences and Allergies.
 ```
 
 ## Build Instructions
-1. Create a `auth.py` with a variable `botToken` that contains the bot token for your bot
+1. Create a `auth.py` in the same directory as `main.py` with a variable `botToken` that contains the bot token for your bot
 ### Windows
 ```bat
 :: Create virtual environment
