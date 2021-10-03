@@ -1,8 +1,8 @@
 {
-    "tea":[
-        "green",
-        "black",
-        "oolong"
+    "tea": [
+        "greentea",
+        "blacktea",
+        "oolongtea"
     ],
     "flavor":[
         "honeyfruittea",
@@ -25,7 +25,7 @@
         "chocolatemilktea",
         "coconutmilktea",
         "coffeemilktea",
-        "earlgreymilkteamilktea",
+        "earlgreymilktea",
         "hokkaidomilktea",
         "nagasakigreenhoneymilktea",
         "honeydewmilktea",
@@ -33,7 +33,7 @@
         "lavendervanillamilktea",
         "lycheerosemilktea",
         "mangomilktea",
-        "matchagreenteamilktea",
+        "matchagreenmilktea",
         "okinawamilktea",
         "pistachiomilktea",
         "rosemilktea",
@@ -46,18 +46,18 @@
         "vanillamilktea"
     ],
     "topping":[
-        "brownsugarcrystalboba",
-        "coffeejelly",
-        "crystalboba",
-        "custardpudding",
-        "honeyboba",
-        "lycheejelly",
-        "lycheepoppingpearls",
-        "mangopoppingpearls",
-        "pomegranatepoppingpearls",
-        "rainbowjelly",
-        "rainbowpoppingpearls",
-        "strawberrypoppingpearls",
-        "tamarindostraw"
+        "brownsugarcrystalbobatopping",
+        "coffeejellytopping",
+        "crystalbobatopping",
+        "custardpuddingtopping",
+        "honeybobatopping",
+        "lycheejellytopping",
+        "lycheepoppingpearlstopping",
+        "mangopoppingpearlstopping",
+        "pomegranatepoppingpearlstopping",
+        "rainbowjellytopping",
+        "rainbowpoppingpearlstopping",
+        "strawberrypoppingpearlstopping",
+        "tamarindostrawtopping"
     ]
 }
