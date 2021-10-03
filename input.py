@@ -29,6 +29,8 @@ async def help(message):
 async def preferences(message):     # Change the preferences of the author
     preferenceArray = message.content.split(" ")    # Take the input and parse it into an array
     preferenceArray.pop(0)
+    for p in range(len(preferenceArray)):
+        preferenceArray[p].lower()
     fm.setPreferences((message.author.name + "#" + str(message.author.id)), preferenceArray)
     if(len(preferenceArray) == 0):    # If the input is only $allergy
         preferencePrompt = "You can specify what your preferences are using **$preference <preference1> <preference 2>**\n"
@@ -38,6 +40,7 @@ async def preferences(message):     # Change the preferences of the author
         newPreference += message.author.name
         newPreference += "** to:\n\t"
         for p in preferenceArray:
+            print(p)
             newPreference += p
             newPreference += " "
         await message.channel.send(newPreference)
@@ -45,6 +48,8 @@ async def preferences(message):     # Change the preferences of the author
 async def allergy(message):     # Change the allergies of the author
     allergyArray = message.content.split(" ")   # Take the input and parse it into an array
     allergyArray.pop(0)
+    for a in range(len(allergyArray)):
+           allergyArray[a].lower()
     fm.setAllergies((message.author.name + "#" + str(message.author.id)), allergyArray)
     if(len(allergyArray) == 0):    # If the input is only $allergy
         allergyPrompt = "You can specify what your allergies are using **$allergy <allergy1> <allergy2>**\n"
