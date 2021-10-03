@@ -34,43 +34,89 @@ def makeBoba(message):
                 if k == i:
                     options_allergies.append(j)
 
-    for i in options['tea']:
-        for j in pref:
-            for k in options_allergies:
-                if i == j and i != k:
-                    pref_temp.append(i)
-    if len(pref_temp) == 0:
+    if len(pref_temp) > 0 and len(options_allergies) > 0:
+        for i in options['tea']:
+            for j in pref:
+                for k in options_allergies:
+                    if i == j and i != k:
+                        pref_temp.append(i)
+        choice[0] = pref_temp[randint(0, len(pref_temp) - 1)]
+        pref_temp = []
+
+        for i in options['flavor']:
+            for j in pref:
+                for k in options_allergies:
+                    if i == j and i != k:
+                        pref_temp.append(i)
+        choice[1] = pref_temp[randint(0, len(pref_temp) - 1)]
+        pref_temp = []
+
+        for i in options['topping']:
+            for j in pref:
+                for k in options_allergies:
+                    if i == j and i != k:
+                        pref_temp.append(i)
+        choice[2] = pref_temp[randint(0, len(pref_temp) - 1)]
+        pref_temp = []
+
+    elif len(pref_temp) == 0 and len(options_allergies) > 0:
         for i in options['tea']:
             for j in options_allergies:
                 if i != j:
                     pref_temp.append(i)
-    choice[0] = pref_temp[randint(0, len(pref_temp) - 1)]
-    pref_temp = []
+        choice[0] = pref_temp[randint(0, len(pref_temp) - 1)]
+        pref_temp = []
 
-    for i in options['flavor']:
-        for j in pref:
-            for k in options_allergies:
-                if i == j and i != k:
-                    pref_temp.append(i)
-    if len(pref_temp) == 0:
         for i in options['flavor']:
             for j in options_allergies:
                 if i != j:
                     pref_temp.append(i)
-    choice[1] = pref_temp[randint(0, len(pref_temp) - 1)]
-    pref_temp = []
+        choice[1] = pref_temp[randint(0, len(pref_temp) - 1)]
+        pref_temp = []
 
-    for i in options['topping']:
-        for j in pref:
-            for k in options_allergies:
-                if i == j and i != k:
-                    pref_temp.append(i)
-    if len(pref_temp) == 0:
         for i in options['topping']:
             for j in options_allergies:
                 if i != j:
                     pref_temp.append(i)
-    choice[2] = pref_temp[randint(0, len(pref_temp) - 1)]
+        choice[2] = pref_temp[randint(0, len(pref_temp) - 1)]
+        pref_temp = []
+
+    elif len(pref_temp) > 0 and len(options_allergies) == 0:
+        for i in options['tea']:
+            for j in pref:
+                if i == j:
+                    pref_temp.append(i)
+        choice[0] = pref_temp[randint(0, len(pref_temp) - 1)]
+        pref_temp = []
+
+        for i in options['flavor']:
+            for j in pref:
+                if i == j:
+                    pref_temp.append(i)
+        choice[1] = pref_temp[randint(0, len(pref_temp) - 1)]
+        pref_temp = []
+
+        for i in options['topping']:
+            for j in pref:
+                if i == j:
+                    pref_temp.append(i)
+        choice[2] = pref_temp[randint(0, len(pref_temp) - 1)]
+        pref_temp = []
+
+    elif len(pref_temp) == 0 and len(options_allergies) == 0:
+        for i in options['tea']:
+            pref_temp.append(i)
+        choice[0] = pref_temp[randint(0, len(pref_temp) - 1)]
+        pref_temp = []
+
+        for i in options['flavor']:
+            pref_temp.append(i)
+        choice[1] = pref_temp[randint(0, len(pref_temp) - 1)]
+        pref_temp = []
+        for j in options['topping']:
+            pref_temp.append(i)
+        choice[2] = pref_temp[randint(0, len(pref_temp) - 1)]
+        pref_temp = []
 
     print(choice[0] + '\n' + choice[1] + '\n' + choice[2] + '\n')
     return choice
