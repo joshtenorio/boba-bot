@@ -2,8 +2,8 @@ import discord
 import os
 import filemanager as fm
 import optionmanager as om
-async def parseCommand(message):
-    fm.getAuthor(message.author)
+
+async def parseCommand(message):    # Takes input from user and selects with command to run
     commandMessage = message.content.split(" ")
     if (commandMessage[0] == "$help"):
         await help(message)
@@ -15,8 +15,8 @@ async def parseCommand(message):
         await make(message)
     if (commandMessage[0] == "$list"):
         await list(message)
-    if (commandMessage[0] == "$json"):
-        await listJson(message)
+    if (commandMessage[0] == "$user"):
+        await user(message)
 
 async def help(message):
     helpMessage = "**List of Commands:**\n"
@@ -31,10 +31,33 @@ async def preferences(message):     # Change the preferences of the author
     preferenceArray = message.content.split(" ")    # Take the input and parse it into an array
     preferenceArray.pop(0)
     fm.setPreferences((message.author.name + "#" + str(message.author.id)), preferenceArray)
+    if(len(preferenceArray) == 0):    # If the input is only $allergy
+        preferencePrompt = "You can specify what your preferences are using **$preference <preference1> <preference 2>**\n"
+        await message.channel.send(preferencePrompt)
+    else:
+        newPreference = "Changed the preferences for **"
+        newPreference += message.author.name
+        newPreference += "** to:\n\t"
+        for p in preferenceArray:
+            newPreference += p
+            newPreference += " "
+        await message.channel.send(newPreference)
 
 async def allergy(message):     # Change the allergies of the author
     allergyArray = message.content.split(" ")   # Take the input and parse it into an array
-    fm.setAllergies(message.author, allergyArray)
+    allergyArray.pop(0)
+    fm.setAllergies((message.author.name + "#" + str(message.author.id)), allergyArray)
+    if(len(allergyArray) == 0):    # If the input is only $allergy
+        allergyPrompt = "You can specify what your allergies are using **$allergy <allergy1> <allergy2>**\n"
+        await message.channel.send(allergyPrompt)
+    else: 
+        newAllergy = "Changed the allergy for **"
+        newAllergy += message.author.name
+        newAllergy += "** to:\n\t"
+        for a in allergyArray:
+            newAllergy += a
+            newAllergy += " "
+        await message.channel.send(newAllergy)
 
 async def make(message):    
     pass
@@ -76,5 +99,18 @@ async def list(message):
 
         await message.channel.send(listPrompt)
 
-    async def listJson(message):
-        pass 
+async def user(message):
+    userPrint = "Let's take a look at "
+    userPrint += message.author.name
+    userPrint += "'s personal information:\n\t"
+    userPrint += "**Preferences**: "
+    preferenceArray = fm.getPreferences(message.author.name + "#" + str(message.author.id))
+    for p in preferenceArray:
+            userPrint += p
+            userPrint += " "
+    userPrint += "\n\t**Allergies**: "
+    allergyArray = fm.getAllergies(message.author.name + "#" + str(message.author.id))
+    for a in allergyArray:
+            userPrint += a
+            userPrint += " "
+    await message.channel.send(userPrint)

@@ -2,6 +2,7 @@ import discord
 import os
 import input
 import auth
+
 client = discord.Client()
 
 @client.event
