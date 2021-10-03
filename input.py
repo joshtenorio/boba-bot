@@ -28,9 +28,10 @@ async def help(message):
 
 async def preferences(message):     # Change the preferences of the author
     preferenceArray = message.content.split(" ")    # Take the input and parse it into an array
-    fm.setPreferences(message.author, preferenceArray)
+    preferenceArray.pop(0)
+    fm.setPreferences((message.author.name + "#" + str(message.author.id)), preferenceArray)
 
-
+#sfdasddsasadfsadf
 async def allergy(message):     # Change the allergies of the author
     allergyArray = message.content.split(" ")   # Take the input and parse it into an array
     fm.setAllergies(message.author, allergyArray)
