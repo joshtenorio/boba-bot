@@ -26,7 +26,7 @@ async def help(message):
 
 async def preferences(message):     # Change the preferences of the author
     preferenceArray = message.content.split(" ")    # Take the input and parse it into an array
-    
+
 #   set the preferences to the message.author 
 
 async def allergy(message):     # Change the allergies of the author
@@ -50,18 +50,18 @@ async def list(message):
         listPrompt += "\t3) toppings\n"
         await message.channel.send(listPrompt)
     
-    if(listArray[1].lower() == "tea" or listArray[1].lower()     == "teas" or listArray[1] == "1"):
-        listPrompt = "For **teas**, you have the following options:\n\n"
-        listPrompt += "Tea: Green, Black, Oolong"
+    if(listArray[1].lower() == "tea" or listArray[1].lower() == "teas" or listArray[1] == "1"):
+        listPrompt = "For teas, you have the following options:\n\n"
+        listPrompt += "**Tea**: Green, Black, Oolong"
         await message.channel.send(listPrompt)
     
     if(listArray[1].lower() == "flavor" or listArray[1].lower() == "flavors" or listArray[1] == "2"):
-        listPrompt = "For **flavors**, you have the following options:\n\n"
-        listPrompt += "Fruit Tea: Honey\nLychee\nLychee Rose, Mango, Mango Passion Fruit, Mango Peach, Peach, Peach Pomegranate, Rose, Strawberry, Strawberry Lychee, Strawberry Mango, Strawberry Peach, Strawberry Pineapple\n"
-        listPrompt += "Milk Tea: Almond, Banana, Chocolate, Coconut, Coffee, Earl Grey, Hokkaido, Nagasaki Green Honey, Honeydew, Jasmine, Lavender, Lavender Vanilla, Lychee Rose, Mango, Matcha, Okinawa, Pistachio, Rose, Royal, Taro, Taro Lavender, Thai, Tiger, Urban, Vanilla\n"
+        listPrompt = "For flavors, you have the following options:\n\n"
+        listPrompt += "**Fruit Tea**: Honey, Lychee, Lychee Rose, Mango, Mango Passion Fruit, Mango Peach, Peach, Peach Pomegranate, Rose, Strawberry, Strawberry Lychee, Strawberry Mango, Strawberry Peach, Strawberry Pineapple\n"
+        listPrompt += "**Milk Tea**: Almond, Banana, Chocolate, Coconut, Coffee, Earl Grey, Hokkaido, Nagasaki Green Honey, Honeydew, Jasmine, Lavender, Lavender Vanilla, Lychee Rose, Mango, Matcha, Okinawa, Pistachio, Rose, Royal, Taro, Taro Lavender, Thai, Tiger, Urban, Vanilla\n"
         await message.channel.send(listPrompt)
     
     if(listArray[1].lower() == "topping" or listArray[1].lower() == "toppings" or listArray[1] == "3"):
-        listPrompt = "For **toppings**, you have the following options:\n\n"
-        listPrompt += "Toppings: Brown Sugar, Crystal Boba, Coffee Jelly, Custard Pudding, Honey Boba, Lychee Jelly, Lychee Popping Pearls, Mango Popping Pearls, Pomegranate Popping Pearls, Rainbow Jelly, Rainbow Popping Pearls, Strawberry Popping Pearls, Tamarindo Straw"
+        listPrompt = "For toppings, you have the following options:\n\n"
+        listPrompt += "**Toppings**: Brown Sugar, Crystal Boba, Coffee Jelly, Custard Pudding, Honey Boba, Lychee Jelly, Lychee Popping Pearls, Mango Popping Pearls, Pomegranate Popping Pearls, Rainbow Jelly, Rainbow Popping Pearls, Strawberry Popping Pearls, Tamarindo Straw"
         await message.channel.send(listPrompt)
