@@ -1,6 +1,7 @@
 import discord
 import os
 import filemanager as fm
+from maker import makeBoba
 
 async def parseCommand(message):    # Takes input from user and selects with command to run
     commandMessage = message.content.split(" ")
@@ -58,12 +59,12 @@ async def allergy(message):     # Change the allergies of the author
             newAllergy += " "
         await message.channel.send(newAllergy)
 
-async def make(message):    
-    pass
+async def make(message):
 #   get the preferences of the message.author
 #   get the allergies of the message.author
 #   calculate the best drink to get (we should add a slight random factor
 #   so you don't get the same drink every time)
+    choice = makeBoba(message)
 
 async def list(message):
     listArray = message.content.split(" ")
