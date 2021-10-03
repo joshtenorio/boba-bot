@@ -34,7 +34,7 @@ def makeBoba(message):
                 if k == i:
                     options_allergies.append(j)
 
-    if len(pref_temp) > 0 and len(options_allergies) > 0:
+    if pref[0] != 'none' and len(options_allergies) > 0:
         for i in options['tea']:
             for j in pref:
                 for k in options_allergies:
@@ -59,7 +59,7 @@ def makeBoba(message):
         choice[2] = pref_temp[randint(0, len(pref_temp) - 1)]
         pref_temp = []
 
-    elif len(pref_temp) == 0 and len(options_allergies) > 0:
+    elif pref[0] == 'none' and len(options_allergies) > 0:
         for i in options['tea']:
             for j in options_allergies:
                 if i != j:
@@ -81,7 +81,7 @@ def makeBoba(message):
         choice[2] = pref_temp[randint(0, len(pref_temp) - 1)]
         pref_temp = []
 
-    elif len(pref_temp) > 0 and len(options_allergies) == 0:
+    elif pref[0] != 'none' and len(options_allergies) == 0:
         for i in options['tea']:
             for j in pref:
                 if i == j:
@@ -103,7 +103,7 @@ def makeBoba(message):
         choice[2] = pref_temp[randint(0, len(pref_temp) - 1)]
         pref_temp = []
 
-    elif len(pref_temp) == 0 and len(options_allergies) == 0:
+    elif pref[0] == 'none' and len(options_allergies) == 0:
         for i in options['tea']:
             pref_temp.append(i)
         choice[0] = pref_temp[randint(0, len(pref_temp) - 1)]
