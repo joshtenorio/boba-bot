@@ -1,7 +1,7 @@
 import discord
 import os
 import input
-
+import auth
 client = discord.Client()
 
 @client.event
@@ -20,4 +20,4 @@ async def on_message(message):
         await input.parseCommand(message) 
         
 
-client.run('ODkzOTY0NTE3OTc1OTQ1MjU2.YVjHVg.OHTxuCtXYcIkWLupRMWRavs5pAU')
+client.run(auth.botToken)
