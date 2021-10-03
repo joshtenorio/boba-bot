@@ -20,6 +20,8 @@ def makeBoba(message):
     pref_temp = []
     choice = ['', '', '']
 
+    valid = True
+
     for i in allergies:
         for j in options['tea']:
             for k in options['tea'][j]:
@@ -38,48 +40,66 @@ def makeBoba(message):
         for i in options['tea']:
             for j in pref:
                 for k in options_allergies:
-                    if i == j and i != k:
-                        pref_temp.append(i)
+                    if i != j and i == k:
+                        valid = False
+                if valid:
+                    pref_temp.append(i)
         choice[0] = pref_temp[randint(0, len(pref_temp) - 1)]
         pref_temp = []
+        valid = True
 
         for i in options['flavor']:
             for j in pref:
                 for k in options_allergies:
-                    if i == j and i != k:
-                        pref_temp.append(i)
+                    if i != j and i == k:
+                        valid = False
+                if valid:
+                    pref_temp.append(i)
         choice[1] = pref_temp[randint(0, len(pref_temp) - 1)]
         pref_temp = []
+        valid = True
 
         for i in options['topping']:
             for j in pref:
                 for k in options_allergies:
-                    if i == j and i != k:
-                        pref_temp.append(i)
+                    if i != j and i == k:
+                        valid = False
+                if valid:
+                    pref_temp.append(i)
         choice[2] = pref_temp[randint(0, len(pref_temp) - 1)]
         pref_temp = []
+        valid = True
 
     elif pref[0] == 'none' and len(options_allergies) > 0:
         for i in options['tea']:
             for j in options_allergies:
-                if i != j:
-                    pref_temp.append(i)
+                if i == j:
+                    valid = False
+            if valid:
+                pref_temp.append(i)
         choice[0] = pref_temp[randint(0, len(pref_temp) - 1)]
         pref_temp = []
+        valid = True
 
         for i in options['flavor']:
             for j in options_allergies:
-                if i != j:
-                    pref_temp.append(i)
+                if i == j:
+                    valid = False
+            if valid:
+                pref_temp.append(i)
         choice[1] = pref_temp[randint(0, len(pref_temp) - 1)]
         pref_temp = []
+        valid = True
 
         for i in options['topping']:
             for j in options_allergies:
-                if i != j:
-                    pref_temp.append(i)
+                if i == j:
+                    valid = False
+            if valid:
+                pref_temp.append(i)
         choice[2] = pref_temp[randint(0, len(pref_temp) - 1)]
         pref_temp = []
+        valid = True
 
     elif pref[0] != 'none' and len(options_allergies) == 0:
         for i in options['tea']:
@@ -119,5 +139,5 @@ def makeBoba(message):
         choice[2] = pref_temp[randint(0, len(pref_temp) - 1)]
         pref_temp = []
 
-    print(choice[0] + '\n' + choice[1] + '\n' + choice[2] + '\n')
+    # print(choice[0] + '\n' + choice[1] + '\n' + choice[2] + '\n')
     return choice
