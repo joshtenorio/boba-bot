@@ -66,11 +66,29 @@ async def allergy(message):     # Change the allergies of the author
         await message.channel.send(newAllergy)
 
 async def make(message):
-#   get the preferences of the message.author
-#   get the allergies of the message.author
-#   calculate the best drink to get (we should add a slight random factor
-#   so you don't get the same drink every time)
     choice = makeBoba(message)
+    tea = om.getTea()
+    flavor = om.getFlavors()
+    toppings = om.getToppings()
+    paths = ["", "", ""]
+    print(len(choice))
+    for t in tea:
+        for c in choice:
+            if c == t:
+                paths[0] = fm.getPathPicture(c)
+
+    for t in flavor:
+        for c in choice:
+            if c == t:
+                paths[1] = fm.getPathPicture(c)
+    for t in toppings:
+        for c in choice:
+            if c == t:
+                paths[2] = fm.getPathPicture(c)
+
+    print(paths)
+    for p in paths:
+        await message.channel.send(file=discord.File(p))
 
 async def list(message):    # Lists the possible choices from the boba bot
     listArray = message.content.split(" ")

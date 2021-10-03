@@ -18,6 +18,7 @@ async def on_message(message):
 
         if message.content.startswith('$hello'):
                 await message.channel.send('Hello!')
+                #await message.channel.send(file=discord.File('Images/Mascot.jpg'))
         if message.content.startswith('$joke'):
                 await message.channel.send("don't spell part backwards, its a trap!")
                 
